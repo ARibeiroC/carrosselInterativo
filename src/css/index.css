@@ -1,0 +1,278 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: black;
+    color: aliceblue;
+    font-size: 12px;
+    min-height: 100vh;
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    
+    position: absolute;
+    width: 80%;
+    height: 50px;
+    z-index: 2;
+    margin: auto;
+    font-size: 1.1rem;
+}
+
+header nav a {
+    color: aliceblue;
+    text-decoration: none;
+    margin-right: .6rem;
+    font-weight: 300;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.container #list .list-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: ease 1s;
+}
+
+.container #list .list-content img {
+    object-fit: cover;
+    object-position: bottom;
+    filter: brightness(50%);
+    width: 100%;
+    height: 100%;
+}
+
+.container #list .list-content .content {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+}
+
+.container #list .list-content .content h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-shadow: 5px 5px 5px black;
+}
+
+.container #list .list-content .content h3 {
+    font-size: 1.1rem;
+    font-weight: 100;
+    margin-bottom: 1rem;
+}
+
+.container #list .list-content .content .buttons #saiba-mais, .container #list .list-content .content .buttons #acessar {
+    height: 45px;
+    padding: .6rem;
+    margin-right: .6rem;
+    transition: ease-in-out 500ms;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.container #list .list-content .content .buttons #saiba-mais {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.container #list .list-content .content .buttons #acessar{
+    background-color: rgba(255, 255, 255, 0);
+    color: aliceblue;
+    border-color: aliceblue;
+}
+
+.container #list .list-content .content .buttons #acessar:hover, .container #list .list-content .content .buttons #saiba-mais:hover{
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 6px 1px aliceblue;
+    color: black;
+}
+
+.container #container-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 80%;
+    margin: auto;
+    
+    position: relative;
+    top: 65%;
+    
+    height: 250px;
+    z-index: 2;
+}
+
+.container #container-footer #controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.container #container-footer #controls #back, .container #container-footer #controls #forward{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: .6rem;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, .7);
+    font-weight: bold;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px 1px black;
+}
+
+.container #container-footer .thumbs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    width: 700px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container #container-footer .thumbs .thumb-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 8px;
+    box-shadow: 4px 4px 6px 1px black;
+}
+
+
+.container #container-footer .thumbs .thumb-item div {
+    width: 150px;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.container #container-footer .thumbs .thumb-item div h3 {
+    position: relative;
+    color: white;
+    bottom: 15%;
+    left: 5%;
+}
+
+.container #container-footer .thumbs .thumb-item img{
+    max-height: 100%;
+    filter: brightness(60%);
+    backdrop-filter: brightness(90%);
+}
+
+.hide{
+    opacity: 0;
+}
+
+/* ANIMMAÇÕES */
+
+.container.forward .thumb-item{
+    animation: motion-thumbs .5s linear 1 forwards;
+}
+
+.container.forward .thumb-item:nth-last-child(1){
+    animation: show-last-card .5s linear 1 forwards;
+}
+
+.container.forward .thumb-item:nth-child(1){
+    animation: hidden-first-card .5s linear 1 forwards
+}
+
+.container.forward #list .list-content img {
+    animation: open-img-bg .5s linear 1 forwards;
+}
+
+
+.container.forward #list .list-content:nth-last-child(1) .content h1, .container.forward #list .list-content:nth-last-child(1) .content h3, .container.forward #list .list-content:nth-last-child(1) .content .buttons{
+    opacity: 0;
+    animation: showTexts 1s 500ms 1 linear forwards;
+}
+
+.container.forward #list .list-content:nth-last-child(1) .content h1{
+    animation-delay: 1s;
+}
+
+.container.forward #list .list-content:nth-last-child(1) .content h3{
+    animation-delay: 1.5s;
+}
+
+.container.forward #list .list-content:nth-last-child(1) .content .buttons{
+    animation-delay: 2s;
+}
+
+
+
+@keyframes motion-thumbs {
+    from {
+        transform: translateX(150px);
+    }
+}
+
+@keyframes show-last-card {
+    from {
+        transform: translateX(150px);
+        opacity: 0;
+    }
+}
+
+@keyframes hidden-first-card {
+    from {
+        transform: translateX(150px);
+        opacity: 1;
+    }
+}
+
+@keyframes open-img-bg {
+    from {
+        opacity: 0;
+        margin-top: 40%;
+        margin-left: 50%;
+        width: 150px;
+        height: 220px;
+    }
+
+    to {
+        opacity: 1;
+        margin-top: 0;
+        margin-left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes showTexts {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+        filter: blur(15px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+
+
